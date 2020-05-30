@@ -15,6 +15,9 @@ set smartindent                         " Makes indenting smart
 set autoindent                          " Good auto indent
 set nobackup                            " This is recommended by coc
 set nowritebackup                       " This is recommended by coc
+set cmdheight=2                         " Give more space for displaying messages
+set splitright
+set splitbelow
 
 if has('termguicolors')
 "  let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
@@ -40,13 +43,22 @@ call plug#begin('~/.config/nvim/plugged')
   "Plug 'joshdick/onedark.vim'
   Plug 'morhetz/gruvbox'
   Plug 'ayu-theme/ayu-vim'
-  " Development
+  Plug 'voldikss/vim-floaterm'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'liuchengxu/vim-which-key'
 
+  " Development
   "Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' }
   "Plug 'davidhalter/jedi-vim'
 call plug#end()
+
+let g:mapleader = "\<Space>"
+let g:maplocalleader = ','
+
+:nmap <leader>t :vsplit +terminal<CR>
+
+" Remove numbers in terminal
+au TermOpen * setlocal nonumber norelativenumber
 
 let g:coc_global_extensions = [
 \ 'coc-explorer',
@@ -92,9 +104,6 @@ let ayucolor="mirage"
 colorscheme gruvbox
 "colorscheme ayu
 
-" Remove numbers in terminal
-au TermOpen * setlocal nonumber norelativenumber
-
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
 let g:netrw_browse_split = 4
@@ -104,8 +113,6 @@ let g:netrw_winsize = 20
 " By default timeoutlen is 1000 ms
 set timeoutlen=200
 
-let g:mapleader = "\<Space>"
-let g:maplocalleader = ','
 nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
 nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
 
